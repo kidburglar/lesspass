@@ -1,0 +1,18 @@
+{
+  "name": "lesspass-render-password",
+  "version": "9.1.4",
+  "description": "LessPass node module used to render password from entropy and options",
+  "license": "GPL-3.0",
+  "author": "Guillaume Vincent <guillaume@oslab.fr>",
+  "files": [
+    "dist",
+    "src"
+  ],
+  "main": "src/index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "dependencies": {
+    "big-integer": "1.6.22"
+  }
+}

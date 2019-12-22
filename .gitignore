@@ -1,0 +1,8 @@
+# python
+__pycache__/
+*.py[cod]
+# javascript
+node_modules
+package-lock.json
+default.nix
+.envrc

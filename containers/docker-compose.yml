@@ -1,0 +1,35 @@
+version: "3"
+
+services:
+  db:
+    image: postgres:9.5
+    volumes:
+      - postgresql:/var/lib/postgresql/data
+  backend:
+    build: ./backend
+    links:
+      - db
+    environment:
+      - DATABASE_ENGINE
+      - DATABASE_HOST
+      - DATABASE_NAME
+      - DATABASE_PASSWORD
+      - DATABASE_PORT
+      - DATABASE_USER
+      - DEBUG
+      - SECRET_KEY
+  frontend:
+    build: ./frontend
+  webserver:
+    build: ./webserver
+    ports:
+      - 80:80
+      - 443:443
+    volumes:
+      - ./ssl:/app/ssl
+    environment:
+      - FQDN
+      - EMAIL
+
+volumes:
+  postgresql:

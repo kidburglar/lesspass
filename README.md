@@ -1,61 +1,54 @@
+[![Actions Status](https://github.com/lesspass/lesspass/workflows/test/badge.svg)](https://github.com/lesspass/lesspass/actions) [![Backers on Open Collective](https://opencollective.com/lesspass/backers/badge.svg)](CONTRIBUTING.md#backers) [![Sponsors on Open Collective](https://opencollective.com/lesspass/sponsors/badge.svg)](CONTRIBUTING.md#sponsors)
+
 # LessPass
 
-LessPass open source password manager (https://lesspass.com)
+LessPass is an open-source password manager. Generate complex, secure passwords for any website or service, without saving them!
 
-[![Backers on Open Collective](https://opencollective.com/lesspass/backers/badge.svg)](#backers) [![Sponsors on Open Collective](https://opencollective.com/lesspass/sponsors/badge.svg)](#sponsors)
+Visit our website at https://lesspass.com
+
+## WIP
+
+:warning: We are reorganizing the repository. This work is not finished yet.
 
 ## How does it work?
 
- * :fr: [LessPass comment ça marche?](https://blog.lesspass.com/lesspass-comment-%C3%A7a-marche-9f1201fffda5#.yjmd1bcad)
- * :gb: [LessPass How Does It Work?](https://blog.lesspass.com/lesspass-how-it-works-dde742dd18a4#.vbgschksh)
+ * :gb: [LessPass - How Does It Work?](https://blog.lesspass.com/lesspass-how-it-works-dde742dd18a4#.vbgschksh)
+ * :fr: [LessPass - comment ça marche?](https://blog.lesspass.com/lesspass-comment-%C3%A7a-marche-9f1201fffda5#.yjmd1bcad)
  * :de: [LessPass - Wie funktioniert das?](https://blog.lesspass.com/lesspass-wie-funktioniert-das-9483e5fc2c09)
+ * :it: [LessPass - Come funziona?](https://blog.lesspass.com/lesspass-come-funziona-5d1785b4a564)
 
 
-## Self Host your LessPass Database
+## Videos
 
-### requirements 
+ * :fr: [Présentation de LessPass](https://www.youtube.com/watch?v=ha9jJJAjHq4)
 
- * `docker`
- * `docker-compose`
+## Podcast
 
-### install 
+ * :gb: [Ask Noah show interview](https://podcast.asknoahshow.com/114)
 
-simply run 
+## CLI
 
-    bash <(curl -s https://raw.githubusercontent.com/lesspass/lesspass/master/lesspass.sh) [DOMAIN] [EMAIL]
+Use `pip` to install LessPass CLI:
 
-`[DOMAIN]` and `[EMAIL]` are used to generate a LetsEncrypt certificate and configure LessPass.
+    python3 -m pip install --user lesspass
 
-### create super user
+Usage:
 
-Go into the backend container and create a super user
-
-```
-docker exec -it lesspass_backend_1 sh
-python manage.py createsuperuser
-```
-
-Now you can access and manage users and password profiles on `https://[DOMAIN]/admin`
-
-
-### configure email
-
-You can edit `.env` file to use your own email server (in order to reset the password for example)
-
-```
-DEFAULT_FROM_EMAIL="LessPass" <admin@example.org>
-EMAIL_HOST=...
-EMAIL_HOST_USER=...
-EMAIL_HOST_PASSWORD=...
-EMAIL_PORT=...
-EMAIL_USE_TLS=1
-```
+    lesspass --help
 
 ## License
 
 This project is licensed under the terms of the GNU GPLv3.
 
+[LessPass mobile](https://github.com/lesspass/lesspass/tree/master/mobile) is bi-licensed under both the Mozilla Public License Version 2 as well as the GNU GPLv3.
+
 ## Contributors :heart:
 
-This project exists thanks to all the people who contribute. [[Contribute]](CONTRIBUTING.md).
-<a href="https://github.com/lesspass/lesspass/graphs/contributors"><img src="https://opencollective.com/lesspass/contributors.svg?width=890" /></a>
+This project exists thanks to all of the people who contribute. [You can help too! There are many ways to help make LessPass better.](CONTRIBUTING.md)
+[![Contributors list](https://opencollective.com/lesspass/contributors.svg?width=890)](https://github.com/lesspass/lesspass/graphs/contributors)
+
+## Backers :heart:
+
+Thank you to all our backers! [Become a backer on Open Collective](https://opencollective.com/lesspass#backer).
+
+<a href="https://opencollective.com/lesspass#backers" target="_blank">![Backers list](https://opencollective.com/lesspass/backers.svg?width=890)</a>

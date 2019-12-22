@@ -1,80 +1,55 @@
-# LessPass cli
-
-LessPass passwords directly in your terminal
-
+# LessPass command-line interface (CLI)
 
 ## Install
 
-```
-$ npm install --global lesspass-cli
-```
-
+    python3 -m pip install --user lesspass
 
 ## Usage
 
-```
-$ lesspass --help
+    lesspass SITE [LOGIN] [MASTER_PASSWORD] [OPTIONS]
 
-  build LessPass passwords directly in command line
+    Arguments:
 
-  Usage
-    $ lesspass <site> <login> [masterPassword] [options] 
+    SITE                site used in the password generation (required)
+    LOGIN               login used in the password generation
+                        default to '' if not provided
+    MASTER_PASSWORD     master password used in password generation
+                        default to LESSPASS_MASTER_PASSWORD env variable or prompt
 
-  Options
-      -l                  add lowercase in password
-      -u                  add uppercase in password
-      -d                  add digits in password
-      -s                  add symbols in password
+    Options:
 
-      --no-lowercase      remove lowercase from password
-      --no-uppercase      remove uppercase from password
-      --no-digits         remove digits from password
-      --no-symbols        remove symbols from password
+    -l, --lowercase      add lowercase in password
+    -u, --uppercase      add uppercase in password
+    -d, --digits         add digits in password
+    -s, --symbols        add symbols in password
+    -L, --length         int (default 16, max 35)
+    -C, --counter        int (default 1)
+    -p, --prompt         interactively prompt SITE and LOGIN (prevent leak to shell history)
+    --no-lowercase       remove lowercase from password
+    --no-uppercase       remove uppercase from password
+    --no-digits          remove digits from password
+    --no-symbols         remove symbols from password
+    -c, --clipboard      copy generated password to clipboard rather than displaying it.
+                        Need pbcopy (OSX), xsel or xclip (Linux) or clip (Windows).
+    -v, --version        lesspass version number
 
-      --length, -L        int (default 16)
-      --counter, -c       int (default 1)
-    
-      --clipboard, -C     copy generated password to clipboard rather than displaying it.
-                          Need pbcopy (OSX), xclip (Linux) or clip (Windows).
+## Examples
+### no symbols
 
-  Examples
-    # no symbols
-    $ lesspass lesspass.com contact@lesspass.com password --no-symbols 
-    OlfK63bmUhqrGODR
-  
-    # no symbols shortcut
-    $ lesspass lesspass.com contact@lesspass.com password -lud
-    OlfK63bmUhqrGODR
-  
-    # only digits and length of 8
-    $ lesspass lesspass.com contact@lesspass.com  -d -L8
-      master password: 
-      75837019
-```
+    lesspass site login masterpassword --no-symbols
 
+### no symbols shortcut
 
-## FAQ
+    lesspass site login masterpassword -lud
 
-### How can I generate a password if I have a quote (`'`) in my master password ?
+### only digits and length of 8
 
-Escape the quote like this :
+    lesspass site login masterpassword -d -L8
 
-    lesspass lesspass.com contact@lesspass.com 'my parents'\'' house is great'
+### master password in env variable
 
-Replace `'` by `'\''`
-
-### password prompt 
-
-If you omit master password, lesspass-cli will ask you a master password:
-
-    lesspass lesspass.com contact@lesspass.com --length=14
-    master password: 
-
+    LESSPASS_MASTER_PASSWORD="masterpassword" lesspass site login
 
 ## License
 
 This project is licensed under the terms of the GNU GPLv3.
-
-## Issues
-
-report issues on [LessPass project](https://github.com/lesspass/lesspass/issues)

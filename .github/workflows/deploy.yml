@@ -1,0 +1,58 @@
+name: deploy
+
+on:
+  push:
+    tags:
+      - '*'
+
+jobs:
+  deploy-containers:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - name: deploy containers
+        run: |
+          ./bin/deploy_containers
+        env:
+          QUAY_USERNAME: ${{ secrets.QUAY_USERNAME }}
+          QUAY_PASSWORD: ${{ secrets.QUAY_PASSWORD }}
+
+  deploy-node-modules:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - name: deploy node modules
+        run: |
+          ./bin/deploy_node_modules
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+  deploy-cli:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - name: Set up Python
+        uses: actions/setup-python@v1
+        with:
+          python-version: '3.x'
+      - name: deploy cli
+        run: |
+          ./bin/deploy_cli
+        env:
+          TWINE_USERNAME: ${{ secrets.PYPI_USERNAME }}
+          TWINE_PASSWORD: ${{ secrets.PYPI_PASSWORD }}
+
+  deploy-web-extensions:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - name: deploy web extensions
+        run: |
+          ./bin/deploy_web_extensions
+        env:
+          EXTENSION_ID: ${{ secrets.EXTENSION_ID }}
+          CLIENT_ID: ${{ secrets.CLIENT_ID }}
+          CLIENT_SECRET: ${{ secrets.CLIENT_SECRET }}
+          REFRESH_TOKEN: ${{ secrets.REFRESH_TOKEN }}
+          WEB_EXT_API_KEY: ${{ secrets.WEB_EXT_API_KEY }}
+          WEB_EXT_API_SECRET: ${{ secrets.WEB_EXT_API_SECRET }}
